@@ -1,0 +1,30 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local build/cache folders
+work/
+tmp/
+temp/
+rendered_pages/
+contact_sheets/
+thumbs/
+pdf_assets/
+dropbox_unzipped/
+
+# Large source archives and raw exports
+*.zip
+*.tar
+*.tar.gz
+
+# Optional local/private notes
+*.local.*
+private/
+raw_photos/
+source_photos/
