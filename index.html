@@ -476,6 +476,37 @@
       color: var(--ink-soft);
       letter-spacing: 0.01em;
     }
+    .contents-title {
+      font-family: var(--serif);
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.98;
+      color: var(--sage-deep);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      max-width: 8ch;
+    }
+    .contents-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 20px;
+      max-width: 28ch;
+      font-weight: 500;
+    }
+    .contents-list {
+      display: grid;
+      gap: 15px;
+      margin-top: 34px;
+    }
+    .contents-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 14px;
+      align-items: baseline;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
 
     /* ────────────────────────────────────────────────────────────────
        Pillars band
@@ -981,16 +1012,18 @@
   <section id="philosophy">
     <div class="philosophy">
       <div class="reveal">
-        <div class="philosophy-stat">8<sup>+</sup></div>
-        <div class="philosophy-stat-label">Service categories supported across multiple private residences</div>
+        <h2 class="contents-title">Portfolio Contents</h2>
+        <div class="contents-label">A guided look at the work shown below</div>
         <div class="philosophy-divider"></div>
-        <div class="philosophy-values">
-          <div class="philosophy-value"><span class="philosophy-value-no">i.</span><span class="philosophy-value-text">Discretion</span></div>
-          <div class="philosophy-value"><span class="philosophy-value-no">ii.</span><span class="philosophy-value-text">Initiative</span></div>
-          <div class="philosophy-value"><span class="philosophy-value-no">iii.</span><span class="philosophy-value-text">Calm operations</span></div>
-          <div class="philosophy-value"><span class="philosophy-value-no">iv.</span><span class="philosophy-value-text">Practical follow-through</span></div>
-          <div class="philosophy-value"><span class="philosophy-value-no">v.</span><span class="philosophy-value-text">Warm family presence</span></div>
-          <div class="philosophy-value"><span class="philosophy-value-no">vi.</span><span class="philosophy-value-text">High standards, never cold</span></div>
+        <div class="contents-list">
+          <div class="contents-item"><span class="philosophy-value-no">01</span><span class="philosophy-value-text">Daily household support</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">02</span><span class="philosophy-value-text">Nanny &amp; child-focused care</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">03</span><span class="philosophy-value-text">Meal prep &amp; everyday cooking</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">04</span><span class="philosophy-value-text">Household organization</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">05</span><span class="philosophy-value-text">Special projects</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">06</span><span class="philosophy-value-text">Household transitions &amp; relocation</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">07</span><span class="philosophy-value-text">Closet organization</span></div>
+          <div class="contents-item"><span class="philosophy-value-no">08</span><span class="philosophy-value-text">Property &amp; lifestyle gallery</span></div>
         </div>
       </div>
 
