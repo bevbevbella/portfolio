@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Family Service — Portfolio</title>
+  <meta name="description" content="A visual portfolio of warm, discreet, hands-on household and family support for private residences." />
+
+  <!--
+    EDIT ME — replace placeholders before sharing:
+      • Name:        appears in nav, hero, and contact footer (search "YOUR NAME")
+      • Email:       search "YOUR_EMAIL"
+      • Location:    search "YOUR_LOCATION"
+      • Phone:       search "YOUR_PHONE" (optional — delete the line if not desired)
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #FBFAF7;
+      --soft:      #F2EDE3;
+      --paper:     #ECE5D6;
+      --line:      #D8D1C5;
+      --ink:       #1F2528;
+      --ink-soft:  #2B3236;
+      --muted:     #6B7068;
+      --sage:      #5F7569;
+      --sage-deep: #3E4F47;
+      --clay:      #9B6F54;
+      --gold:      #B6955C;
+      --charcoal:  #26302C;
+
+      --serif: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
+      --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      --max:    1320px;
+      --gutter: clamp(20px, 4vw, 56px);
+
+      --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s var(--ease);
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Scroll progress indicator
+       ──────────────────────────────────────────────────────────────── */
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--sage), var(--clay));
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Navigation
+       ──────────────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease), border-color 0.4s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(251, 250, 247, 0.92);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      padding: 14px var(--gutter);
+      border-bottom-color: var(--line);
+    }
+
+    .brand {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      color: #fff;
+      transition: color 0.4s var(--ease);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .brand .mono {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+    .nav.scrolled .brand { color: var(--ink); }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav.scrolled .nav-links a { color: var(--ink-soft); }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -2px;
+      height: 1px;
+      width: 0;
+      background: currentColor;
+      transition: width 0.35s var(--ease);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 9px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 100px;
+      color: #fff;
+      transition: all 0.3s var(--ease);
+    }
+    .nav.scrolled .nav-cta {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .nav-cta:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .nav.scrolled .nav-cta:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 28px;
+      height: 22px;
+      position: relative;
+    }
+    .nav-toggle span {
+      display: block;
+      position: absolute;
+      left: 0; right: 0;
+      height: 1.5px;
+      background: #fff;
+      transition: all 0.3s var(--ease);
+    }
+    .nav-toggle span:nth-child(1) { top: 4px; }
+    .nav-toggle span:nth-child(2) { top: 10px; }
+    .nav-toggle span:nth-child(3) { top: 16px; }
+    .nav.scrolled .nav-toggle span { background: var(--ink); }
+
+    /* ────────────────────────────────────────────────────────────────
+       Hero
+       ──────────────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/portfolio/cover-00.jpg");
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.06);
+      animation: heroZoom 14s ease-out forwards;
+    }
+    @keyframes heroZoom {
+      to { transform: scale(1); }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.55) 100%);
+    }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>");
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--gutter) 100px;
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      opacity: 0.92;
+    }
+    .hero-kicker::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: currentColor;
+      display: inline-block;
+      opacity: 0.7;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(48px, 8vw, 108px);
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+      max-width: 12ch;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.55;
+      max-width: 50ch;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 48px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      max-width: 720px;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .hero-meta-label {
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      font-weight: 500;
+    }
+    .hero-meta-value {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      right: var(--gutter);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      z-index: 2;
+    }
+    .hero-scroll::after {
+      content: "";
+      width: 1px;
+      height: 60px;
+      background: currentColor;
+      animation: scrollLine 2.2s ease-in-out infinite;
+      transform-origin: top;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Sections — general layout
+       ──────────────────────────────────────────────────────────────── */
+    section {
+      padding: clamp(80px, 12vw, 160px) var(--gutter);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    section.full {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    section.full > .inner {
+      max-width: var(--max);
+      padding: 0 var(--gutter);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--sage);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.55;
+    }
+
+    .display {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(34px, 5.4vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .display em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--sage-deep);
+    }
+
+    .lead {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 50ch;
+    }
+
+    p.body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Philosophy section
+       ──────────────────────────────────────────────────────────────── */
+    .philosophy {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(40px, 8vw, 110px);
+      align-items: start;
+    }
+    .philosophy-stat {
+      font-family: var(--serif);
+      font-size: clamp(64px, 9vw, 124px);
+      line-height: 0.9;
+      color: var(--sage-deep);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-top: -8px;
+    }
+    .philosophy-stat sup {
+      font-size: 0.35em;
+      vertical-align: super;
+      color: var(--clay);
+      font-weight: 500;
+      margin-left: 4px;
+    }
+    .philosophy-stat-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 18px;
+      max-width: 22ch;
+      font-weight: 500;
+    }
+    .philosophy-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--line);
+      margin: 36px 0;
+    }
+    .philosophy-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      margin-top: 36px;
+    }
+    .philosophy-value {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+    }
+    .philosophy-value-no {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--clay);
+      min-width: 24px;
+    }
+    .philosophy-value-text {
+      font-size: 14px;
+      color: var(--ink-soft);
+      letter-spacing: 0.01em;
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Pillars band
+       ──────────────────────────────────────────────────────────────── */
+    .pillars-band {
+      background: var(--soft);
+      padding: clamp(80px, 12vw, 140px) var(--gutter);
+      position: relative;
+    }
+    .pillars-band::before,
+    .pillars-band::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--line);
+    }
+    .pillars-band::before { top: 0; }
+    .pillars-band::after  { bottom: 0; }
+
+    .pillars-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .pillars-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 70px;
+    }
+    .pillars-head .display { max-width: 14ch; }
+    .pillars-head .body { max-width: 38ch; padding-bottom: 8px; }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .pillar {
+      background: var(--soft);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.4s var(--ease);
+    }
+    .pillar:hover { background: var(--cream); }
+    .pillar-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--clay);
+      letter-spacing: 0.02em;
+    }
+    .pillar-title {
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.2;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .pillar-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Service sections
+       ──────────────────────────────────────────────────────────────── */
+    .service {
+      padding-top: clamp(80px, 11vw, 150px);
+      padding-bottom: clamp(80px, 11vw, 150px);
+    }
+    .service + .service {
+      border-top: 1px solid var(--line);
+    }
+
+    .service-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: clamp(30px, 6vw, 80px);
+      align-items: end;
+      margin-bottom: clamp(48px, 6vw, 80px);
+    }
+    .service-head-left { display: flex; flex-direction: column; gap: 24px; }
+    .service-no {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--clay);
+      letter-spacing: 0.04em;
+    }
+    .service-title {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.8vw, 72px);
+      line-height: 1.02;
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      max-width: 14ch;
+    }
+    .service-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--sage-deep);
+    }
+    .service-copy {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      max-width: 52ch;
+    }
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-soft);
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Editorial grid: 1 large + 5 supporting in a 12-col layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 1fr;
+      gap: clamp(10px, 1.5vw, 18px);
+    }
+
+    .figure {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border-radius: 2px;
+    }
+    .figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.4s var(--ease), filter 0.6s var(--ease);
+      filter: saturate(0.95);
+    }
+    .figure:hover img {
+      transform: scale(1.04);
+      filter: saturate(1.05);
+    }
+    .figure::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+      pointer-events: none;
+      border-radius: 2px;
+    }
+    .figure figcaption {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      right: 16px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      line-height: 1.3;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+      z-index: 2;
+    }
+    .figure::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 100%);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .figure:hover::before { opacity: 1; }
+    .figure:hover figcaption { opacity: 1; transform: translateY(0); }
+
+    /* Default layout A: large left */
+    .grid--a .f1 { grid-column: 1 / 8; grid-row: 1 / 3; aspect-ratio: 4 / 5; }
+    .grid--a .f2 { grid-column: 8 / 13; grid-row: 1 / 2; aspect-ratio: 5 / 4; }
+    .grid--a .f3 { grid-column: 8 / 13; grid-row: 2 / 3; aspect-ratio: 5 / 4; }
+    .grid--a .f4 { grid-column: 1 / 5;  grid-row: 3 / 4; aspect-ratio: 4 / 3; }
+    .grid--a .f5 { grid-column: 5 / 9;  grid-row: 3 / 4; aspect-ratio: 4 / 3; }
+    .grid--a .f6 { grid-column: 9 / 13; grid-row: 3 / 4; aspect-ratio: 4 / 3; }
+
+    /* Mirrored layout B: large right */
+    .grid--b .f1 { grid-column: 6 / 13; grid-row: 1 / 3; aspect-ratio: 4 / 5; }
+    .grid--b .f2 { grid-column: 1 / 6;  grid-row: 1 / 2; aspect-ratio: 5 / 4; }
+    .grid--b .f3 { grid-column: 1 / 6;  grid-row: 2 / 3; aspect-ratio: 5 / 4; }
+    .grid--b .f4 { grid-column: 1 / 5;  grid-row: 3 / 4; aspect-ratio: 4 / 3; }
+    .grid--b .f5 { grid-column: 5 / 9;  grid-row: 3 / 4; aspect-ratio: 4 / 3; }
+    .grid--b .f6 { grid-column: 9 / 13; grid-row: 3 / 4; aspect-ratio: 4 / 3; }
+
+    /* ────────────────────────────────────────────────────────────────
+       Quote panel
+       ──────────────────────────────────────────────────────────────── */
+    .quote-panel {
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: clamp(100px, 14vw, 180px) var(--gutter);
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-panel::before {
+      content: "“";
+      position: absolute;
+      top: -40px;
+      left: var(--gutter);
+      font-family: var(--serif);
+      font-size: 360px;
+      line-height: 1;
+      color: rgba(182, 149, 92, 0.18);
+      z-index: 0;
+    }
+    .quote-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .quote-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.3;
+      letter-spacing: -0.005em;
+      margin-bottom: 40px;
+    }
+    .quote-text strong {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--gold);
+    }
+    .quote-attr {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .quote-attr::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Gallery section (uses gallery- assets)
+       ──────────────────────────────────────────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 200px;
+      gap: clamp(8px, 1.2vw, 14px);
+    }
+    .gallery-grid .figure:nth-child(1) { grid-column: span 3; grid-row: span 2; }
+    .gallery-grid .figure:nth-child(2) { grid-column: span 3; grid-row: span 1; }
+    .gallery-grid .figure:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+    .gallery-grid .figure:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+    .gallery-grid .figure:nth-child(5) { grid-column: span 2; grid-row: span 1; }
+    .gallery-grid .figure:nth-child(6) { grid-column: span 4; grid-row: span 1; }
+
+    /* ────────────────────────────────────────────────────────────────
+       Closing / Contact
+       ──────────────────────────────────────────────────────────────── */
+    .closing {
+      text-align: center;
+      padding: clamp(120px, 16vw, 200px) var(--gutter);
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+    }
+    .closing .display { margin: 0 auto 32px; max-width: 18ch; }
+    .closing .body { margin: 0 auto 48px; }
+    .closing-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--cream);
+      background: var(--ink);
+      padding: 18px 36px;
+      border-radius: 100px;
+      transition: all 0.35s var(--ease);
+    }
+    .closing-cta:hover {
+      background: var(--sage-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px -12px rgba(31, 37, 40, 0.4);
+    }
+    .closing-cta svg { width: 14px; height: 14px; }
+
+    .contact-band {
+      background: var(--ink);
+      color: var(--cream);
+      padding: clamp(70px, 9vw, 110px) var(--gutter) 40px;
+    }
+    .contact-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: clamp(30px, 5vw, 70px);
+      align-items: start;
+    }
+    .contact-brand {
+      font-family: var(--serif);
+      font-size: 36px;
+      line-height: 1.1;
+      font-weight: 400;
+      max-width: 12ch;
+    }
+    .contact-brand em { font-style: italic; color: var(--gold); }
+    .contact-col h4 {
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 18px;
+    }
+    .contact-col a,
+    .contact-col p {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--cream);
+      font-weight: 400;
+      display: block;
+    }
+    .contact-col a:hover { color: var(--gold); }
+    .contact-col p + p { margin-top: 4px; font-size: 14px; opacity: 0.7; }
+
+    .contact-foot {
+      max-width: var(--max);
+      margin: 80px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* ────────────────────────────────────────────────────────────────
+       Reveal animation
+       ──────────────────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 1s var(--ease), transform 1s var(--ease);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal[data-delay="1"] { transition-delay: 0.08s; }
+    .reveal[data-delay="2"] { transition-delay: 0.16s; }
+    .reveal[data-delay="3"] { transition-delay: 0.24s; }
+    .reveal[data-delay="4"] { transition-delay: 0.32s; }
+
+    /* ────────────────────────────────────────────────────────────────
+       Responsive
+       ──────────────────────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+
+      .philosophy { grid-template-columns: 1fr; }
+      .philosophy-values { grid-template-columns: 1fr; }
+
+      .pillars { grid-template-columns: 1fr 1fr; }
+      .pillars-head { flex-direction: column; align-items: flex-start; }
+
+      .service-head { grid-template-columns: 1fr; align-items: start; }
+
+      .grid--a .f1, .grid--b .f1 { grid-column: 1 / 13; aspect-ratio: 4 / 3; }
+      .grid--a .f2, .grid--a .f3,
+      .grid--b .f2, .grid--b .f3 { grid-column: 1 / 7; aspect-ratio: 1 / 1; }
+      .grid--a .f3, .grid--b .f3 { grid-column: 7 / 13; }
+      .grid--a .f4, .grid--b .f4 { grid-column: 1 / 7; }
+      .grid--a .f5, .grid--b .f5 { grid-column: 7 / 13; }
+      .grid--a .f6, .grid--b .f6 { grid-column: 1 / 13; aspect-ratio: 16 / 9; }
+      .grid--a .f1, .grid--b .f1,
+      .grid--a .f2, .grid--b .f2,
+      .grid--a .f3, .grid--b .f3 { grid-row: auto; }
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+      .gallery-grid .figure { grid-column: span 1 !important; grid-row: span 1 !important; }
+      .gallery-grid .figure:nth-child(1) { grid-column: span 2 !important; grid-row: span 2 !important; }
+
+      .contact-inner { grid-template-columns: 1fr 1fr; }
+      .contact-brand { grid-column: span 2; }
+
+      .hero-scroll { display: none; }
+      .hero-meta { gap: 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .pillars { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .contact-brand { grid-column: 1; }
+      .hero-meta { flex-direction: column; gap: 18px; }
+    }
+
+    /* Print fallback — keeps it tidy if anyone hits ctrl-p */
+    @media print {
+      .nav, .progress, .hero-scroll { display: none !important; }
+      .hero { min-height: auto; }
+      section, .pillars-band, .quote-panel, .closing { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <nav class="nav" id="nav">
+    <a href="#top" class="brand">
+      <span>YOUR NAME</span>
+      <span class="mono">Private Service</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#philosophy">Approach</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#services">Portfolio</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Inquire</a>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── HERO ───────────────────────────────────────────────────────── -->
+  <header class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-kicker reveal">Private Family Service Portfolio</div>
+      <h1 class="hero-title reveal" data-delay="1">
+        Quiet care,<br />
+        steady <em>follow-through.</em>
+      </h1>
+      <p class="hero-sub reveal" data-delay="2">
+        A visual record of hands-on household and family support across private residences —
+        kept ready, kept organized, kept calm.
+      </p>
+
+      <div class="hero-meta reveal" data-delay="3">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Role</span>
+          <span class="hero-meta-value">UHNW Family Assistant</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Based</span>
+          <span class="hero-meta-value">YOUR_LOCATION</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Availability</span>
+          <span class="hero-meta-value">Open to select roles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">Scroll</div>
+  </header>
+
+  <!-- ─── PHILOSOPHY ─────────────────────────────────────────────────── -->
+  <section id="philosophy">
+    <div class="philosophy">
+      <div class="reveal">
+        <div class="philosophy-stat">8<sup>+</sup></div>
+        <div class="philosophy-stat-label">Service categories supported across multiple private residences</div>
+        <div class="philosophy-divider"></div>
+        <div class="philosophy-values">
+          <div class="philosophy-value"><span class="philosophy-value-no">i.</span><span class="philosophy-value-text">Discretion</span></div>
+          <div class="philosophy-value"><span class="philosophy-value-no">ii.</span><span class="philosophy-value-text">Initiative</span></div>
+          <div class="philosophy-value"><span class="philosophy-value-no">iii.</span><span class="philosophy-value-text">Calm operations</span></div>
+          <div class="philosophy-value"><span class="philosophy-value-no">iv.</span><span class="philosophy-value-text">Practical follow-through</span></div>
+          <div class="philosophy-value"><span class="philosophy-value-no">v.</span><span class="philosophy-value-text">Warm family presence</span></div>
+          <div class="philosophy-value"><span class="philosophy-value-no">vi.</span><span class="philosophy-value-text">High standards, never cold</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="eyebrow reveal">The Approach</div>
+        <h2 class="display reveal" data-delay="1">
+          Warm, discreet support<br />
+          for <em>private family life.</em>
+        </h2>
+        <p class="body reveal" data-delay="2" style="margin-top: 32px;">
+          This portfolio reflects a service style built on discretion, care, initiative,
+          and steady follow-through — keeping spaces ready, children supported, kitchens
+          stocked, closets ordered, projects moving, and transitions handled with calm
+          attention.
+        </p>
+        <p class="body reveal" data-delay="3" style="margin-top: 18px;">
+          The work is hands-on and quietly held. Principals don't have to ask twice;
+          children feel looked after; properties feel cared for. It is the kind of help
+          that takes pressure off a household without drawing attention to itself.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PILLARS BAND ───────────────────────────────────────────────── -->
+  <section class="pillars-band full" id="capabilities">
+    <div class="pillars-inner">
+      <div class="pillars-head">
+        <h2 class="display reveal">
+          Four pillars,<br />
+          one <em>household standard.</em>
+        </h2>
+        <p class="body reveal" data-delay="1">
+          The portfolio is organized around the four areas where this work creates the most value
+          for a private family: operations, family support, order, and ownership of projects.
+        </p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar reveal">
+          <span class="pillar-num">i.</span>
+          <h3 class="pillar-title">Household<br />Operations</h3>
+          <p class="pillar-text">Daily resets, errands, restocking, readiness checks, and the small details that make a property feel cared for.</p>
+        </div>
+        <div class="pillar reveal" data-delay="1">
+          <span class="pillar-num">ii.</span>
+          <h3 class="pillar-title">Family<br />Support</h3>
+          <p class="pillar-text">A warm presence for children, pets, activities, transport, and the shifting practical needs of family life.</p>
+        </div>
+        <div class="pillar reveal" data-delay="2">
+          <span class="pillar-num">iii.</span>
+          <h3 class="pillar-title">Order &amp;<br />Systems</h3>
+          <p class="pillar-text">Closets, pantries, utility spaces, and storage areas organized for visibility, access, and easy maintenance.</p>
+        </div>
+        <div class="pillar reveal" data-delay="3">
+          <span class="pillar-num">iv.</span>
+          <h3 class="pillar-title">Project<br />Ownership</h3>
+          <p class="pillar-text">Seasonal decor, move-ins, special requests, garden harvests, and hands-on household projects, carried through.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICE PORTFOLIO ──────────────────────────────────────────── -->
+  <div id="services"></div>
+
+  <!-- 01 — Daily Household Support -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 01 / Daily Operations</span>
+        <h2 class="service-title">Daily <em>household</em> support</h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          Consistent, attentive support across multiple residences: resetting rooms, stocking
+          essentials, preparing guest-ready spaces, managing errands, and noticing the small
+          details that keep a private household calm, ready, and well cared for.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Household resets</span>
+          <span class="tag">Stocking &amp; readiness</span>
+          <span class="tag">Errands</span>
+          <span class="tag">Property detail care</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--a reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/daily-00.jpg" alt="Room styling and daily reset" /><figcaption>Room styling and daily reset</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/daily-01.jpg" alt="Fresh florals and tabletop care" /><figcaption>Fresh florals and tabletop care</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/daily-02.jpg" alt="Beverage drawer restock" /><figcaption>Beverage drawer restock</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/daily-03.jpg" alt="Refrigerator readiness" /><figcaption>Refrigerator readiness</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/daily-04.jpg" alt="Snack and pantry support" /><figcaption>Snack and pantry support</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/daily-05.jpg" alt="Bedroom setup and move-in support" /><figcaption>Bedroom setup and move-in support</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 02 — Nanny & Child Support -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 02 / Family Support</span>
+        <h2 class="service-title">Nanny &amp; <em>child-focused</em> care</h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          Warm, steady family support with a practical eye for schedules, activities,
+          transport, child spaces, pet care, and the emotional tone of the home. The work
+          is nurturing, organized, and discreet.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Child activities</span>
+          <span class="tag">School &amp; airport logistics</span>
+          <span class="tag">Play spaces</span>
+          <span class="tag">Pet care</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--b reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/nanny-00.jpg" alt="Family transport logistics" /><figcaption>Family transport logistics</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/nanny-01.jpg" alt="Playroom organization" /><figcaption>Playroom organization</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/nanny-02.jpg" alt="Prepared activity gifts" /><figcaption>Prepared activity gifts</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/nanny-03.jpg" alt="Care for children's interests" /><figcaption>Care for children's interests</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/nanny-04.jpg" alt="Pet-care readiness" /><figcaption>Pet-care readiness</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/nanny-05.jpg" alt="Family room setup" /><figcaption>Family room setup</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 03 — Meals -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 03 / Kitchen &amp; Table</span>
+        <h2 class="service-title">Meal prep &amp; <em>everyday cooking</em></h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          Simple, reliable meal preparation with attention to presentation, preferences,
+          timing, and household rhythm. Meals are prepared to feel approachable, clean,
+          and ready for family life — never overworked.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Daily meals</span>
+          <span class="tag">Light cooking</span>
+          <span class="tag">Presentation</span>
+          <span class="tag">Preference awareness</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--a reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/meals-00.jpg" alt="Breakfast setup" /><figcaption>Breakfast setup</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/meals-01.jpg" alt="Prepared wrap plate" /><figcaption>Prepared wrap plate</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/meals-02.jpg" alt="Family-style salad and wraps" /><figcaption>Family-style salad and wraps</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/meals-03.jpg" alt="Soup and grilled toast" /><figcaption>Soup and grilled toast</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/meals-04.jpg" alt="Comfort meal prep" /><figcaption>Comfort meal prep</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/meals-05.jpg" alt="Homemade baked goods" /><figcaption>Homemade baked goods</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ─── QUOTE PANEL ────────────────────────────────────────────────── -->
+  <section class="quote-panel full">
+    <div class="quote-inner reveal">
+      <p class="quote-text">
+        The aim is simple: a household that feels <strong>looked after</strong> —
+        where principals don't have to ask twice, and the work happens before anyone
+        notices it needed to.
+      </p>
+      <div class="quote-attr">A note on service</div>
+    </div>
+  </section>
+
+  <!-- 04 — Organization -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 04 / Order &amp; Systems</span>
+        <h2 class="service-title">Household <em>organization</em></h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          Practical systems that make daily life easier: grouped categories, visible
+          inventory, guest-ready storage, tidy utility areas, and organized spaces
+          maintainable by the household team over time.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Pantry systems</span>
+          <span class="tag">Fridge restock</span>
+          <span class="tag">Garage &amp; utility zones</span>
+          <span class="tag">Linen &amp; laundry</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--b reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/organization-00.jpg" alt="Beverage and fridge organization" /><figcaption>Beverage and fridge organization</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/organization-01.jpg" alt="Kitchen drawer system" /><figcaption>Kitchen drawer system</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/organization-02.jpg" alt="Laundry cabinet reset" /><figcaption>Laundry cabinet reset</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/organization-03.jpg" alt="Garage storage zones" /><figcaption>Garage storage zones</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/organization-04.jpg" alt="Office and supply organization" /><figcaption>Office and supply organization</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/organization-05.jpg" alt="Linen storage" /><figcaption>Linen storage</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 05 — Special Projects -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 05 / Project Ownership</span>
+        <h2 class="service-title">Special <em>projects</em></h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          One-off projects handled with ownership: seasonal decor, craft-room resets,
+          garden harvesting, new-pet setup, household requests, and hands-on property
+          support from planning through final presentation.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Seasonal decor</span>
+          <span class="tag">Project ownership</span>
+          <span class="tag">Hands-on setup</span>
+          <span class="tag">Follow-through</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--a reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/projects-00.jpg" alt="Garden harvest sorting" /><figcaption>Garden harvest sorting</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/projects-01.jpg" alt="Seasonal decor plan" /><figcaption>Seasonal decor plan</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/projects-02.jpg" alt="Holiday home setup" /><figcaption>Holiday home setup</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/projects-03.jpg" alt="Craft room final result" /><figcaption>Craft room final result</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/projects-04.jpg" alt="Outdoor request completed" /><figcaption>Outdoor request completed</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/projects-05.jpg" alt="New pet setup" /><figcaption>New pet setup</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 06 — Transitions -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 06 / Moves &amp; Seasons</span>
+        <h2 class="service-title">Household <em>transitions</em> &amp; relocation</h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          Support through household moves and seasonal transitions: packing, vehicle
+          loading, unpacking, staging essentials, organizing storage, and helping each
+          property feel functional quickly.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Packing &amp; transport</span>
+          <span class="tag">Move-in setup</span>
+          <span class="tag">Storage staging</span>
+          <span class="tag">Seasonal transitions</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--b reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/transitions-00.jpg" alt="Seasonal storage staging" /><figcaption>Seasonal storage staging</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/transitions-01.jpg" alt="Vehicle load planning" /><figcaption>Vehicle load planning</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/transitions-02.jpg" alt="Move-in bedroom setup" /><figcaption>Move-in bedroom setup</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/transitions-03.jpg" alt="Kitchen essentials placed" /><figcaption>Kitchen essentials placed</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/transitions-04.jpg" alt="Item sorting and staging" /><figcaption>Item sorting and staging</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/transitions-05.jpg" alt="Transport coordination" /><figcaption>Transport coordination</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 07 — Closets -->
+  <section class="service">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 07 / Wardrobe</span>
+        <h2 class="service-title">Closet <em>organization</em></h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          Closet support focused on order, visibility, and ease of use: clothing sorted by
+          category, folded consistently, staged for access, and maintained with a quiet,
+          high-service standard.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Wardrobe sorting</span>
+          <span class="tag">Folding systems</span>
+          <span class="tag">Children's closets</span>
+          <span class="tag">Move-in organization</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--a reveal" data-delay="2">
+      <figure class="figure f1"><img src="assets/portfolio/closets-00.jpg" alt="Wardrobe sorting" /><figcaption>Wardrobe sorting</figcaption></figure>
+      <figure class="figure f2"><img src="assets/portfolio/closets-01.jpg" alt="Folded clothing system" /><figcaption>Folded clothing system</figcaption></figure>
+      <figure class="figure f3"><img src="assets/portfolio/closets-02.jpg" alt="Closet organization" /><figcaption>Closet organization</figcaption></figure>
+      <figure class="figure f4"><img src="assets/portfolio/closets-03.jpg" alt="Drawers and garments" /><figcaption>Drawers and garments</figcaption></figure>
+      <figure class="figure f5"><img src="assets/portfolio/closets-04.jpg" alt="Child closet setup" /><figcaption>Child closet setup</figcaption></figure>
+      <figure class="figure f6"><img src="assets/portfolio/closets-05.jpg" alt="Adult closet support" /><figcaption>Adult closet support</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ─── GALLERY ────────────────────────────────────────────────────── -->
+  <section id="gallery">
+    <div class="service-head">
+      <div class="service-head-left reveal">
+        <span class="service-no">— 08 / Context</span>
+        <h2 class="service-title">Property &amp; <em>lifestyle</em></h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <p class="service-copy">
+          A visual sense of the environments supported: private residences, farm and lake
+          properties, family animals, outdoor spaces, and the lifestyle context that
+          requires discretion, flexibility, and steady judgment.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Multi-property awareness</span>
+          <span class="tag">Lifestyle support</span>
+          <span class="tag">Animal care</span>
+          <span class="tag">Discretion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-grid reveal" data-delay="2">
+      <figure class="figure"><img src="assets/portfolio/gallery-00.jpg" alt="Private residence environment" /><figcaption>Private residence environment</figcaption></figure>
+      <figure class="figure"><img src="assets/portfolio/gallery-01.jpg" alt="Lake property context" /><figcaption>Lake property context</figcaption></figure>
+      <figure class="figure"><img src="assets/portfolio/gallery-02.jpg" alt="Farm property" /><figcaption>Farm property</figcaption></figure>
+      <figure class="figure"><img src="assets/portfolio/gallery-03.jpg" alt="Residence care" /><figcaption>Residence care</figcaption></figure>
+      <figure class="figure"><img src="assets/portfolio/gallery-04.jpg" alt="Animal care" /><figcaption>Animal care</figcaption></figure>
+      <figure class="figure"><img src="assets/portfolio/gallery-05.jpg" alt="Pet companionship" /><figcaption>Pet companionship</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ─── CLOSING ────────────────────────────────────────────────────── -->
+  <section class="closing">
+    <div class="eyebrow reveal" style="justify-content: center;">In Closing</div>
+    <h2 class="display reveal" data-delay="1">
+      Available for <em>select</em> private roles.
+    </h2>
+    <p class="body reveal" data-delay="2">
+      Currently open to long-term family assistant, house manager, and household support
+      positions for UHNW principals and private families. References and a detailed
+      experience summary available upon request.
+    </p>
+    <a href="#contact" class="closing-cta reveal" data-delay="3">
+      Begin a conversation
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M1 7h12M7 1l6 6-6 6" />
+      </svg>
+    </a>
+  </section>
+
+  <!-- ─── CONTACT FOOTER ─────────────────────────────────────────────── -->
+  <footer class="contact-band" id="contact">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="contact-brand">
+          <em>YOUR NAME</em><br />
+          Private Family Service
+        </div>
+      </div>
+      <div class="contact-col reveal" data-delay="1">
+        <h4>Inquiries</h4>
+        <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
+        <p>By referral and direct introduction</p>
+      </div>
+      <div class="contact-col reveal" data-delay="2">
+        <h4>Direct</h4>
+        <a href="tel:YOUR_PHONE">YOUR_PHONE</a>
+        <p>Discretion assured</p>
+      </div>
+      <div class="contact-col reveal" data-delay="3">
+        <h4>Based</h4>
+        <p style="font-family: var(--serif); font-size: 18px; opacity: 1;">YOUR_LOCATION</p>
+        <p>Open to relocation &amp; travel</p>
+      </div>
+    </div>
+
+    <div class="contact-foot">
+      <span>© 2026 — Private Family Service Portfolio</span>
+      <span>Prepared for UHNW &amp; private family principals</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll progress
+    const progress = document.getElementById("progress");
+    const nav = document.getElementById("nav");
+    function onScroll() {
+      const h = document.documentElement;
+      const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+      progress.style.width = (scrolled * 100) + "%";
+      nav.classList.toggle("scrolled", h.scrollTop > 60);
+    }
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      }
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Smooth scroll for in-page anchors (in case smooth-scroll is blocked)
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (ev) => {
+        const id = a.getAttribute("href");
+        if (id.length > 1 && document.querySelector(id)) {
+          ev.preventDefault();
+          document.querySelector(id).scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
