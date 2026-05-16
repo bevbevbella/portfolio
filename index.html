@@ -550,15 +550,32 @@
       margin: 0 auto;
     }
     .pillars-head {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 30px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: end;
+      gap: clamp(34px, 6vw, 80px);
       margin-bottom: 70px;
     }
     .pillars-head .display { max-width: 14ch; }
     .pillars-head .body { max-width: 38ch; padding-bottom: 8px; }
+    .pillars-visual {
+      margin: 0;
+    }
+    .pillars-visual img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      filter: saturate(0.95);
+    }
+    .pillars-visual figcaption {
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--clay);
+      font-size: 14px;
+    }
 
     .pillars {
       display: grid;
@@ -940,7 +957,7 @@
       .philosophy-values { grid-template-columns: 1fr; }
 
       .pillars { grid-template-columns: 1fr 1fr; }
-      .pillars-head { flex-direction: column; align-items: flex-start; }
+      .pillars-head { grid-template-columns: 1fr; align-items: flex-start; }
 
       .service-head { grid-template-columns: 1fr; align-items: start; }
 
@@ -1086,14 +1103,20 @@
   <section class="pillars-band full" id="capabilities">
     <div class="pillars-inner">
       <div class="pillars-head">
-        <h2 class="display reveal">
-          Four pillars,<br />
-          one <em>household standard.</em>
-        </h2>
-        <p class="body reveal" data-delay="1">
-          The portfolio is organized around the four areas where this work creates the most value
-          for a private family: operations, family support, order, and ownership of projects.
-        </p>
+        <div>
+          <h2 class="display reveal">
+            Four pillars,<br />
+            one <em>household standard.</em>
+          </h2>
+          <p class="body reveal" data-delay="1" style="margin-top: 28px;">
+            The portfolio is organized around the four areas where this work creates the most value
+            for a private family: operations, family support, order, and ownership of projects.
+          </p>
+        </div>
+        <figure class="pillars-visual reveal" data-delay="2">
+          <img src="assets/portfolio/pillars-stuart.jpg" alt="Family pet in a private residence" />
+          <figcaption>Care that holds the whole household in mind.</figcaption>
+        </figure>
       </div>
 
       <div class="pillars">
