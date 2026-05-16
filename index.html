@@ -507,6 +507,24 @@
       padding-bottom: 14px;
       border-bottom: 1px solid var(--line);
     }
+    .contents-visual {
+      margin-bottom: clamp(36px, 5vw, 58px);
+    }
+    .contents-visual img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      filter: saturate(0.94);
+    }
+    .contents-visual figcaption {
+      margin-top: 12px;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--clay);
+      font-size: 14px;
+    }
 
     /* ────────────────────────────────────────────────────────────────
        Pillars band
@@ -1040,6 +1058,10 @@
       </div>
 
       <div>
+        <figure class="contents-visual reveal" data-delay="1">
+          <img src="assets/portfolio/contents-closet.jpg" alt="Closet organization detail" />
+          <figcaption>Organized systems, ready for daily use.</figcaption>
+        </figure>
         <div class="eyebrow reveal">The Approach</div>
         <h2 class="display reveal" data-delay="1">
           Warm, discreet support<br />
