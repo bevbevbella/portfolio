@@ -551,19 +551,21 @@
     }
     .pillars-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      align-items: end;
-      gap: clamp(34px, 6vw, 80px);
+      grid-template-columns: minmax(0, 1fr) minmax(180px, 320px);
+      align-items: start;
+      gap: clamp(28px, 5vw, 70px);
       margin-bottom: 70px;
     }
     .pillars-head .display { max-width: 14ch; }
     .pillars-head .body { max-width: 38ch; padding-bottom: 8px; }
     .pillars-visual {
       margin: 0;
+      justify-self: end;
+      width: min(100%, 320px);
     }
     .pillars-visual img {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       display: block;
       border-radius: 2px;
@@ -957,7 +959,10 @@
       .philosophy-values { grid-template-columns: 1fr; }
 
       .pillars { grid-template-columns: 1fr 1fr; }
-      .pillars-head { grid-template-columns: 1fr; align-items: flex-start; }
+      .pillars-head {
+        grid-template-columns: minmax(0, 1fr) minmax(150px, 240px);
+        align-items: start;
+      }
 
       .service-head { grid-template-columns: 1fr; align-items: start; }
 
@@ -985,6 +990,11 @@
 
     @media (max-width: 560px) {
       .pillars { grid-template-columns: 1fr; }
+      .pillars-head { grid-template-columns: 1fr; }
+      .pillars-visual {
+        justify-self: start;
+        width: min(100%, 280px);
+      }
       .contact-inner { grid-template-columns: 1fr; }
       .contact-brand { grid-column: 1; }
       .hero-meta { flex-direction: column; gap: 18px; }
