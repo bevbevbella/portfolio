@@ -485,6 +485,12 @@
       letter-spacing: -0.01em;
       max-width: 8ch;
     }
+    .contents-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(140px, 240px);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
     .contents-label {
       font-size: 11px;
       letter-spacing: 0.3em;
@@ -508,7 +514,9 @@
       border-bottom: 1px solid var(--line);
     }
     .contents-visual {
-      margin-bottom: clamp(36px, 5vw, 58px);
+      margin: 0;
+      justify-self: end;
+      width: min(100%, 240px);
     }
     .contents-visual img {
       width: 100%;
@@ -989,6 +997,11 @@
     }
 
     @media (max-width: 560px) {
+      .contents-top { grid-template-columns: 1fr; }
+      .contents-visual {
+        justify-self: start;
+        width: min(100%, 240px);
+      }
       .pillars { grid-template-columns: 1fr; }
       .pillars-head { grid-template-columns: 1fr; }
       .pillars-visual {
@@ -1069,8 +1082,16 @@
   <section id="philosophy">
     <div class="philosophy">
       <div class="reveal">
-        <h2 class="contents-title">Portfolio Contents</h2>
-        <div class="contents-label">A quiet look at the care behind each home</div>
+        <div class="contents-top">
+          <div>
+            <h2 class="contents-title">Portfolio Contents</h2>
+            <div class="contents-label">A quiet look at the care behind each home</div>
+          </div>
+          <figure class="contents-visual">
+            <img src="assets/portfolio/contents-closet.jpg" alt="Closet organization detail" />
+            <figcaption>Organized systems, ready for daily use.</figcaption>
+          </figure>
+        </div>
         <div class="philosophy-divider"></div>
         <div class="contents-list">
           <div class="contents-item"><span class="philosophy-value-no">01</span><span class="philosophy-value-text">Daily household support</span></div>
@@ -1085,10 +1106,6 @@
       </div>
 
       <div>
-        <figure class="contents-visual reveal" data-delay="1">
-          <img src="assets/portfolio/contents-closet.jpg" alt="Closet organization detail" />
-          <figcaption>Organized systems, ready for daily use.</figcaption>
-        </figure>
         <div class="eyebrow reveal">The Approach</div>
         <h2 class="display reveal" data-delay="1">
           Warm, discreet support<br />
