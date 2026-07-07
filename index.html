@@ -548,8 +548,12 @@
        ──────────────────────────────────────────────────────────────── */
     .pillars-band {
       background: var(--soft);
-      padding: clamp(80px, 12vw, 140px) var(--gutter);
+      padding: clamp(72px, 9vw, 120px) var(--gutter);
       position: relative;
+    }
+    section.pillars-band.full {
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
     }
     .pillars-band::before,
     .pillars-band::after {
@@ -565,20 +569,21 @@
     .pillars-inner {
       max-width: var(--max);
       margin: 0 auto;
+      padding-inline: clamp(18px, 2.5vw, 34px);
     }
     .pillars-head {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(180px, 320px);
+      grid-template-columns: minmax(0, 0.72fr) minmax(360px, 0.9fr);
       align-items: start;
-      gap: clamp(28px, 5vw, 70px);
-      margin-bottom: 70px;
+      gap: clamp(44px, 6vw, 88px);
+      margin-bottom: clamp(48px, 6vw, 76px);
     }
     .pillars-head .display { max-width: 14ch; }
     .pillars-head .body { max-width: 38ch; padding-bottom: 8px; }
     .pillars-visual {
       margin: 0;
       justify-self: end;
-      width: min(100%, 320px);
+      width: min(100%, 560px);
     }
     .pillars-visual img {
       width: 100%;
@@ -594,6 +599,13 @@
       font-style: italic;
       color: var(--clay);
       font-size: 14px;
+    }
+    .pillars-visual-note {
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 42ch;
     }
 
     .pillars {
@@ -980,7 +992,7 @@
 
       .pillars { grid-template-columns: 1fr 1fr; }
       .pillars-head {
-        grid-template-columns: minmax(0, 1fr) minmax(150px, 240px);
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
         align-items: start;
       }
 
@@ -1154,6 +1166,10 @@
         <figure class="pillars-visual reveal" data-delay="2">
           <img src="assets/portfolio/pillars-stuart.jpg" alt="Family pet in a private residence" />
           <figcaption>Care that holds the whole household in mind.</figcaption>
+          <p class="pillars-visual-note">
+            From quiet daily resets to child, pet, wardrobe, and project support, the work is
+            meant to feel steady, observant, and naturally woven into the rhythm of the home.
+          </p>
         </figure>
       </div>
 
