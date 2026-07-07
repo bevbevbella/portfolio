@@ -418,9 +418,12 @@
        ──────────────────────────────────────────────────────────────── */
     .philosophy {
       display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-      gap: clamp(40px, 8vw, 110px);
+      grid-template-columns: minmax(420px, 0.88fr) minmax(0, 1fr);
+      gap: clamp(56px, 7vw, 104px);
       align-items: start;
+    }
+    .philosophy > div {
+      min-width: 0;
     }
     .philosophy-stat {
       font-family: var(--serif);
@@ -478,17 +481,17 @@
     }
     .contents-title {
       font-family: var(--serif);
-      font-size: clamp(42px, 6vw, 76px);
+      font-size: clamp(42px, 5.2vw, 72px);
       line-height: 0.98;
       color: var(--sage-deep);
       font-weight: 400;
       letter-spacing: -0.01em;
-      max-width: 8ch;
+      max-width: 9ch;
     }
     .contents-top {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(140px, 240px);
-      gap: clamp(24px, 4vw, 48px);
+      grid-template-columns: minmax(0, 1fr) minmax(150px, 220px);
+      gap: clamp(22px, 3vw, 38px);
       align-items: start;
     }
     .contents-label {
@@ -516,7 +519,7 @@
     .contents-visual {
       margin: 0;
       justify-self: end;
-      width: min(100%, 240px);
+      width: min(100%, 220px);
     }
     .contents-visual img {
       width: 100%;
@@ -532,6 +535,12 @@
       font-style: italic;
       color: var(--clay);
       font-size: 14px;
+    }
+    .philosophy .display {
+      max-width: 14ch;
+    }
+    .philosophy p.body {
+      max-width: 54ch;
     }
 
     /* ────────────────────────────────────────────────────────────────
@@ -963,7 +972,10 @@
       .nav-cta { display: none; }
       .nav-toggle { display: block; }
 
-      .philosophy { grid-template-columns: 1fr; }
+      .philosophy {
+        grid-template-columns: 1fr;
+        gap: 64px;
+      }
       .philosophy-values { grid-template-columns: 1fr; }
 
       .pillars { grid-template-columns: 1fr 1fr; }
