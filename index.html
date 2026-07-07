@@ -578,6 +578,9 @@
       gap: clamp(44px, 6vw, 88px);
       margin-bottom: clamp(48px, 6vw, 76px);
     }
+    .pillars-copy {
+      padding-left: clamp(28px, 4vw, 64px);
+    }
     .pillars-head .display { max-width: 14ch; }
     .pillars-head .body { max-width: 38ch; padding-bottom: 8px; }
     .pillars-visual {
@@ -1028,6 +1031,7 @@
       }
       .pillars { grid-template-columns: 1fr; }
       .pillars-head { grid-template-columns: 1fr; }
+      .pillars-copy { padding-left: 0; }
       .pillars-visual {
         justify-self: start;
         width: min(100%, 280px);
@@ -1153,7 +1157,7 @@
   <section class="pillars-band full" id="capabilities">
     <div class="pillars-inner">
       <div class="pillars-head">
-        <div>
+        <div class="pillars-copy">
           <h2 class="display reveal">
             Four pillars,<br />
             one <em>household standard.</em>
