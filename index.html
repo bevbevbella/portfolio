@@ -193,6 +193,15 @@
     .nav-toggle span:nth-child(2) { top: 10px; }
     .nav-toggle span:nth-child(3) { top: 16px; }
     .nav.scrolled .nav-toggle span { background: var(--ink); }
+    .nav.open .nav-toggle span:nth-child(1) {
+      top: 10px;
+      transform: rotate(45deg);
+    }
+    .nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .nav.open .nav-toggle span:nth-child(3) {
+      top: 10px;
+      transform: rotate(-45deg);
+    }
 
     /* ────────────────────────────────────────────────────────────────
        Hero
@@ -983,9 +992,59 @@
        Responsive
        ──────────────────────────────────────────────────────────────── */
     @media (max-width: 960px) {
-      .nav-links { display: none; }
+      .nav {
+        position: sticky;
+        padding: 14px var(--gutter);
+        background: rgba(251, 250, 247, 0.96);
+        border-bottom-color: var(--line);
+        backdrop-filter: saturate(140%) blur(14px);
+        -webkit-backdrop-filter: saturate(140%) blur(14px);
+      }
+      .brand {
+        color: var(--ink);
+        max-width: calc(100% - 48px);
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+        line-height: 1.05;
+      }
+      .brand .mono {
+        font-size: 9px;
+        letter-spacing: 0.24em;
+        line-height: 1.4;
+      }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px var(--gutter) 18px;
+        background: rgba(251, 250, 247, 0.98);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 18px 40px rgba(31, 39, 41, 0.08);
+      }
+      .nav.open .nav-links { display: flex; }
+      .nav-links a,
+      .nav.scrolled .nav-links a {
+        display: block;
+        color: var(--ink);
+        padding: 14px 0;
+        border-top: 1px solid var(--line);
+      }
+      .nav-links a::after { display: none; }
       .nav-cta { display: none; }
-      .nav-toggle { display: block; }
+      .nav-toggle {
+        display: block;
+        flex: 0 0 auto;
+      }
+      .nav-toggle span,
+      .nav.scrolled .nav-toggle span {
+        background: var(--ink);
+      }
 
       .philosophy {
         grid-template-columns: 1fr;
@@ -1024,6 +1083,13 @@
     }
 
     @media (max-width: 560px) {
+      .nav { padding: 12px 20px; }
+      .brand { font-size: 18px; }
+      .brand .mono {
+        max-width: 220px;
+        font-size: 8px;
+        letter-spacing: 0.2em;
+      }
       .contents-top { grid-template-columns: 1fr; }
       .contents-visual {
         justify-self: start;
@@ -1058,14 +1124,14 @@
       <span>BeverlyBella Fowler</span>
       <span class="mono">Family &amp; Estate Management</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="#philosophy">Approach</a></li>
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#services">Portfolio</a></li>
       <li><a href="#gallery">Gallery</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Inquire</a>
-    <button class="nav-toggle" aria-label="Menu">
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -1496,6 +1562,7 @@
     // Scroll progress
     const progress = document.getElementById("progress");
     const nav = document.getElementById("nav");
+    const navToggle = document.querySelector(".nav-toggle");
     function onScroll() {
       const h = document.documentElement;
       const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
@@ -1504,6 +1571,11 @@
     }
     document.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries) => {
@@ -1522,6 +1594,8 @@
         const id = a.getAttribute("href");
         if (id.length > 1 && document.querySelector(id)) {
           ev.preventDefault();
+          nav.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
           document.querySelector(id).scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
